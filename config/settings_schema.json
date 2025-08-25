@@ -1342,19 +1342,19 @@
         "label": "t:settings.page_width",
         "options": [
           {
-            "value": "narrow",
+            "value": "1230",
             "label": "t:options.narrow"
           },
           {
-            "value": "normal",
+            "value": "1440",
             "label": "t:options.normal"
           },
           {
-            "value": "wide",
+            "value": "1920",
             "label": "t:options.wide"
           }
         ],
-        "default": "narrow"
+        "default": "1440"
       }
     ]
   },
