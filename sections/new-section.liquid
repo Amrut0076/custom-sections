@@ -1,0 +1,268 @@
+<style>
+  .padding-{{ section.id }}{
+  padding-top: {{ section.settings.top_padding }}px;
+  padding-bottom: {{ section.settings.bottom_padding }}px;
+  }
+  {% if section.settings.deserves_bg != blank %}
+  section.new-multivitamin-body-deserves {
+  background: url({{ section.settings.deserves_bg | image_url }});
+  background-position: bottom center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  }
+  {% endif %}
+  .new-multivitamin-body-deserves .page-width {
+  max-width: 1240px;
+  padding: 0 15px;
+  margin: 0 auto;
+  width: 100%;
+  }
+  .new-multivitamin-body-deserves-stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+  }
+  .new-multivitamin-body-deserves-stats img {
+      width: 25%;
+  }
+  .new-multivitamin-body-deserves-content-img-with-text {
+      display: grid;
+      gap: 0 73px;
+      align-items: center;
+      grid-template-columns: 333px auto;
+      margin-bottom: 40px;
+  }
+  .new-multivitamin-body-deserves-content-text-content h2 {
+      font-family: 'LunchBox' !important;
+      font-weight: 400;
+      font-size: 67.61px;
+      line-height: 100%;
+      letter-spacing: 0px;
+      text-transform: uppercase;
+      color: #BE5D58;
+      margin: 0 0 30px 0;
+  }
+  .new-multivitamin-body-deserves-content-text-content p {
+      font-family: 'Montserrat';
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22.54px;
+      letter-spacing: 0px;
+      margin: 0;
+      color: #C25958;
+  }
+  .new-multivitamin-body-deserves-content-text-content p:nth-child(2){
+      margin-bottom: 30px;
+  }
+  .new-multivitamin-body-deserves-logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+  }
+  @media screen and (max-width: 1024px){
+  .padding-{{ section.id }}{
+  padding-top: {{ section.settings.tab_top_padding }}px;
+  padding-bottom: {{ section.settings.tab_bottom_padding }}px;
+  }
+  }
+  @media screen and (max-width: 767px){
+  .padding-{{ section.id }}{
+  padding-top: {{ section.settings.mob_top_padding }}px;
+  padding-bottom: {{ section.settings.mob_bottom_padding }}px;
+  }
+  }
+</style>
+
+<section class="new-multivitamin-body-deserves padding-{{ section.id }}">
+  <div class="page-width">
+    <div class="new-multivitamin-body-deserves-content">
+      <div class="new-multivitamin-body-deserves-stats">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'icon_with_text' %}
+              <img
+                src="{{ block.settings.stat_icon | image_url }}"
+                height="auto"
+                width="auto"
+                alt="={{ block.settings.stat_icon.alt }}"
+              >
+          {% endcase %}
+        {% endfor %}
+      </div>
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'image_with_text' %}
+            <div class="new-multivitamin-body-deserves-content-img-with-text">
+              <img
+                src="{{ block.settings.image_with_text | image_url }}"
+                height="auto"
+                width="auto"
+                alt="{{ block.settings.image_with_text.alt }}"
+              >
+              <div class="new-multivitamin-body-deserves-content-text-content">
+                <h2>{{ block.settings['image-heading'] }}</h2>
+                {{ block.settings['image-description'] }}
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+      <div class="new-multivitamin-body-deserves-logo">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'multivitamin_logo' %}
+              <div class="new-multivitamin-body-deserves-logo-logos">
+                <img
+                  src="{{ block.settings.multivitamin_log | image_url }}"
+                  height="auto"
+                  width="auto"
+                  alt="{{ block.settings.multivitamin_log.alt }}"
+                >
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Body Deserves",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "deserves_bg",
+      "label": "Background Image"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "top_padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "bottom_padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Tablet Padding"
+    },
+    {
+      "type": "range",
+      "id": "tab_top_padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "tab_bottom_padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Section Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "mob_top_padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mob_bottom_padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_with_text",
+      "name": "Icon With Text",
+      "settings": [
+        {
+          "id": "stat_icon",
+          "type": "image_picker",
+          "label": "Icon"
+        }
+      ]
+    },
+    {
+      "type": "image_with_text",
+      "name": "Image With Text",
+      "limit": 1,
+      "settings": [
+        {
+          "id": "image_with_text",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "image-heading",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "image-description",
+          "type": "richtext",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "multivitamin_logo",
+      "name": "Multivitamin logo",
+      "settings": [
+        {
+          "id": "multivitamin_log",
+          "type": "image_picker",
+          "label": "Logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Body Deserves"
+    }
+  ]
+}
+{% endschema %}
